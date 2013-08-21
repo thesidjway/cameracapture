@@ -1,0 +1,4 @@
+cameracapture
+=============
+
+CameraCapture with Bitbake
