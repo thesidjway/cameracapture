@@ -1,13 +1,20 @@
-#include "cv.h"
-#include "highgui.h"
-
+#include<iostream>
+#include<opencv2/opencv.hpp>
+using namespace std;
 using namespace cv;
-
-int main(int, char**)
+ 
+int main()
 {
-
-CvCapture *capture = cvCaptureFromCAM(CV_CAP_ANY);
-IplImage *frame = cvQueryFrame(capture);
-cvSaveImage("output.png", frame);
-return 0;
+    VideoCapture capture(0);
+    capture.set(CV_CAP_PROP_FRAME_WIDTH,600);
+    capture.set(CV_CAP_PROP_FRAME_HEIGHT,400);
+    if(!capture.isOpened()){
+        cout << "Failed to connect to the camera." << endl;
+    }
+    Mat frame;
+    capture >> frame;
+   
+imwrite("capture.png", frame);
+    return 0;
 }
+
